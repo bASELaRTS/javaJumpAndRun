@@ -81,6 +81,7 @@ public class GameGraphics {
     rgb |= (b&0xff);
     return rgb;
   }
+  
   public static BufferedImage getImage(String filename) {
     try {
       return ImageIO.read(new File(filename));
@@ -89,4 +90,16 @@ public class GameGraphics {
     }    
     return null;
   }
+  
+  public static BufferedImage getImage(BufferedImage sheet, int x, int y, int w, int h) {
+    BufferedImage image;
+    Graphics graphics;
+    
+    image = new BufferedImage(w,h,BufferedImage.TYPE_INT_ARGB);
+    graphics = image.getGraphics();
+    graphics.drawImage(sheet,0,0,w,h,x,y,x+w,y+h,null);    
+    
+    return image;
+  }
+
 }

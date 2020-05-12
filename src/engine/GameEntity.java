@@ -13,18 +13,18 @@ public class GameEntity {
 	
 	private GameEngine m_game;
 	
-	public GameEntity(String key) {
+	public GameEntity(GameEngine engine, String key) {
 		this.m_position = new Vector3();
 		
+    this.setGame(engine);
 		this.setKey(key);
 		this.getPosition().setCoordinates(0, 0, 0);
 		this.setSize(0, 0);
-		this.setGame(null);
 		this.setVisible(true);
 	}
 	
-	public void update(int elapsed) {}
-	public void paint(GameGraphics graphics) {}
+	public void update() {}
+	public void paint() {}
 	
 	public void setRemove(boolean b) {this.m_remove=b;}
 	public boolean getRemove() {return this.m_remove;}

@@ -1,8 +1,8 @@
 package gameTest;
 
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import com.sun.glass.events.KeyEvent;
 
 import engine.GameEngine;
 import engine.GameFrame;

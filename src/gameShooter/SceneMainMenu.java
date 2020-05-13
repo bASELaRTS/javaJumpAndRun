@@ -1,6 +1,6 @@
 package gameShooter;
 
-import com.sun.glass.events.KeyEvent;
+import java.awt.event.KeyEvent;
 
 import engine.GameEngine;
 import engine.GameGraphics;

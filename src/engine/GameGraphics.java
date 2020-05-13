@@ -27,7 +27,7 @@ public class GameGraphics {
   }
   
   public void clear(int c) {
-    this.m_graphics.setColor(new Color(c));
+    this.m_graphics.setColor(new Color(c,true));
     this.m_graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
   }
   
@@ -36,12 +36,12 @@ public class GameGraphics {
   }
   
   public void drawLine(int x1, int y1, int x2, int y2, int c) {
-    this.m_graphics.setColor(new Color(c));
+    this.m_graphics.setColor(new Color(c,true));
     this.m_graphics.drawLine(x1, y1, x2, y2);
   }
   
   public void fillRect(int x, int y, int w, int h, int c) {
-    this.m_graphics.setColor(new Color(c));
+    this.m_graphics.setColor(new Color(c,true));
     this.m_graphics.fillRect(x, y, w, h);
   }
   
@@ -58,9 +58,33 @@ public class GameGraphics {
   }
   
   public void drawString(String str, int x, int y, int c) {
-    this.m_graphics.setColor(new Color(c));
+    this.m_graphics.setColor(new Color(c,true));
     this.m_graphics.drawString(str, x, y);
   }
+  
+  public void drawFont(String str, int x, int y, Font font) {
+    int i,px;
+    String s;
+    FontCharacter character;
+    BufferedImage image;
+    
+    px = 0;
+    for(i=0;i<str.length();i++) {
+      s = "" + str.charAt(i);
+      character = font.getCharacter(s);
+      if (character!=null) {
+        image = character.getImage();
+        if (image!=null) {
+          this.drawImage(image, x, y);
+        }        
+        px = character.getWidth();
+      } else {
+        px = font.getDefaultCharacterWidth();
+      }
+      px += font.getCharacterSpacing();
+      x += px;
+    }
+  }  
   
   public BufferedImage getImage() {return this.m_buffer;}
   

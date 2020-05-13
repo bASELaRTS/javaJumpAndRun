@@ -3,6 +3,7 @@ package gameShooter;
 import java.awt.event.KeyEvent;
 
 import engine.GameEngine;
+import engine.GameGraphics;
 import engine.InputKeyboard;
 
 public class SceneGame extends Scene {
@@ -24,5 +25,14 @@ public class SceneGame extends Scene {
       Scene s = game.getScenes().getScene("scenemainmenu");
       game.getScenes().activate(s);
     }
+  }
+  
+  public void paint() {
+    super.paint();
+    
+    int x = this.getGameEngine().getInput().getMouse().getX();
+    int y = this.getGameEngine().getInput().getMouse().getY();
+    GameGraphics graphics = this.getGameEngine().getGraphics();
+    graphics.drawString("Mouse: " + x + ";" + y, 2, 22, GameGraphics.getColor(255, 255, 216, 0));
   }
 }

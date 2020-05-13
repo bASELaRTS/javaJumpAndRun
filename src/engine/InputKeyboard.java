@@ -26,7 +26,7 @@ public class InputKeyboard {
 	  }
 	}
 	
-	private void setKeys(boolean state) {
+	public void setKeys(boolean state) {
 		int i;
 		InputKeyboardKey key;
 		for(i=0;i<this.m_keys.size();i++) {

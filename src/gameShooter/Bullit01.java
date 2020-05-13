@@ -3,18 +3,17 @@ package gameShooter;
 import java.awt.image.BufferedImage;
 
 import engine.GameEngine;
-import engine.GameEntity;
 import engine.GameGraphics;
 import engine.Sprite;
 import engine.SpriteFrame;
 import engine.Vector3;
 
-public class Bullit01 extends GameEntity {
+public class Bullit01 extends ShooterEntity {
   private Sprite m_sprite;
   private Vector3 m_speed;
   
-  public Bullit01(GameEngine engine, Vector3 speed) {
-    super(engine,"bullit01");
+  public Bullit01(GameEngine engine, Scene scene, Vector3 speed) {
+    super(engine,scene,"bullit01");
     
     this.m_speed = new Vector3(speed);
     

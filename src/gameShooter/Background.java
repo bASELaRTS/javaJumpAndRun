@@ -6,14 +6,14 @@ import engine.GameEngine;
 import engine.GameEntity;
 import engine.GameGraphics;
 
-public class Background extends GameEntity {
+public class Background extends ShooterEntity {
   private BufferedImage m_image;
   private double m_yoffset;
   
   private long m_cloudTimestamp;
   
-  public Background(GameEngine engine) {
-    super(engine,"background");
+  public Background(GameEngine engine, Scene scene) {
+    super(engine,scene,"background");
     
     this.m_image = GameGraphics.getImage("data/desert-backgorund.png");
     this.setSize(this.m_image.getWidth(), this.m_image.getHeight());
@@ -29,7 +29,7 @@ public class Background extends GameEntity {
       if ((Math.random()*10)>=5) {
         GameEntity entity = new Cloud(this.getGame());
         entity.getPosition().y = -entity.getHeight();
-        ((Shooter)this.getGame()).getEntities().add(entity);
+        this.getScene().getEntities().add(entity);
       }
     }
   }

@@ -13,7 +13,7 @@ import engine.SpriteFrame;
 import engine.Vector3;
 import engine.Sprite;
 
-public class Player extends GameEntity {
+public class Player extends ShooterEntity {
   private Vector<Sprite> m_sprites;
   private int m_spriteIndex;
   private int m_spriteIndexGoto;
@@ -22,8 +22,8 @@ public class Player extends GameEntity {
   private int m_fireDelay;
   private long m_fireTimestamp;
   
-  public Player(GameEngine engine) {
-    super(engine,"player");
+  public Player(GameEngine engine, Scene scene) {
+    super(engine,scene,"player");
     this.setGame(engine);
     
     this.m_sprites = new Vector<Sprite>();
@@ -98,10 +98,10 @@ public class Player extends GameEntity {
         // add bullet;
         GameEntity bullit;
         v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x+5.5;
         bullit.getPosition().y = this.getPosition().y-13;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
       }
     }
     
@@ -112,15 +112,15 @@ public class Player extends GameEntity {
         // add bullet;
         GameEntity bullit;
         v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x-3;
         bullit.getPosition().y = this.getPosition().y-13;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
 
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x + 16 - 3;
         bullit.getPosition().y = this.getPosition().y-13;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
       }
     }
     if (keyboard.getState(KeyEvent.VK_X)) {
@@ -130,20 +130,20 @@ public class Player extends GameEntity {
         // add bullet;
         GameEntity bullit;
         v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x-3;
         bullit.getPosition().y = this.getPosition().y-13;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
 
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x + 16 - 3;
         bullit.getPosition().y = this.getPosition().y-13;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
 
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x + 5.5;
         bullit.getPosition().y = this.getPosition().y-13-7;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
       }
     }    
     if (keyboard.getState(KeyEvent.VK_C)) {
@@ -153,22 +153,22 @@ public class Player extends GameEntity {
         // add bullet;
         GameEntity bullit;
         v3.setCoordinates(-(160/5000.0), -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x-3;
         bullit.getPosition().y = this.getPosition().y-13;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
 
         v3.setCoordinates((160/5000.0), -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x + 16 - 3;
         bullit.getPosition().y = this.getPosition().y-13;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
 
         v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),v3);
+        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
         bullit.getPosition().x = this.getPosition().x + 5.5;
         bullit.getPosition().y = this.getPosition().y-13-7;
-        ((Shooter)this.getGame()).getEntities().add(bullit);
+        this.getScene().getEntities().add(bullit);
       }
     }    
     

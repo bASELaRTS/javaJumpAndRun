@@ -5,12 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 import engine.GameEngine;
-import engine.GameEntity;
 import engine.GameGraphics;
 import engine.InputKeyboard;
-import engine.InputKeyboardKey;
 import engine.SpriteFrame;
-import engine.Vector3;
 import engine.Sprite;
 
 public class Player extends ShooterEntity {
@@ -18,9 +15,9 @@ public class Player extends ShooterEntity {
   private int m_spriteIndex;
   private int m_spriteIndexGoto;
   private long m_spriteTimestamp;
-
-  private int m_fireDelay;
-  private long m_fireTimestamp;
+  
+  private Vector<Weapon> m_weapons;
+  private int m_weaponIndex;  
   
   public Player(GameEngine engine, Scene scene) {
     super(engine,scene,"player");
@@ -47,12 +44,12 @@ public class Player extends ShooterEntity {
     this.getPosition().x = (int)((this.getGame().getWidth()-(this.m_sprites.elementAt(this.m_spriteIndex).getImage().getWidth()))*0.5);
     this.getPosition().y = this.getGame().getHeight() - (this.m_sprites.elementAt(this.m_spriteIndex).getImage().getHeight()) - 10;
 
-    this.m_fireDelay = 350;
-    this.m_fireTimestamp = 0;
-    
-    this.getGame().getInput().getKeyboard().add(new InputKeyboardKey(KeyEvent.VK_Z));
-    this.getGame().getInput().getKeyboard().add(new InputKeyboardKey(KeyEvent.VK_X));
-    this.getGame().getInput().getKeyboard().add(new InputKeyboardKey(KeyEvent.VK_C));
+    this.m_weapons = new Vector<Weapon>();
+    this.m_weapons.add(new WeaponPlayerA(this));
+    this.m_weapons.add(new WeaponPlayerB(this));
+    this.m_weapons.add(new WeaponPlayerC(this));
+    this.m_weapons.add(new WeaponPlayerD(this));
+    this.m_weaponIndex = 0;
   }
   
   public void update() {
@@ -60,7 +57,6 @@ public class Player extends ShooterEntity {
     InputKeyboard keyboard = this.getGame().getInput().getKeyboard();
     long dtm = System.currentTimeMillis();
     double x;
-    Vector3 v3 = new Vector3();
     
     // movement;
     x = this.getPosition().x;
@@ -91,86 +87,20 @@ public class Player extends ShooterEntity {
     this.getPosition().x = x;
     
     // action
-    if (keyboard.getState(KeyEvent.VK_SPACE)) {
-      if ((dtm-this.m_fireTimestamp)>=this.m_fireDelay) {
-        this.m_fireTimestamp = dtm;
-        
-        // add bullet;
-        GameEntity bullit;
-        v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x+5.5;
-        bullit.getPosition().y = this.getPosition().y-13;
-        this.getScene().getEntities().add(bullit);
-      }
-    }
-    
     if (keyboard.getState(KeyEvent.VK_Z)) {
-      if ((dtm-this.m_fireTimestamp)>=this.m_fireDelay) {
-        this.m_fireTimestamp = dtm;
-        
-        // add bullet;
-        GameEntity bullit;
-        v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x-3;
-        bullit.getPosition().y = this.getPosition().y-13;
-        this.getScene().getEntities().add(bullit);
-
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x + 16 - 3;
-        bullit.getPosition().y = this.getPosition().y-13;
-        this.getScene().getEntities().add(bullit);
-      }
-    }
-    if (keyboard.getState(KeyEvent.VK_X)) {
-      if ((dtm-this.m_fireTimestamp)>=this.m_fireDelay) {
-        this.m_fireTimestamp = dtm;
-        
-        // add bullet;
-        GameEntity bullit;
-        v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x-3;
-        bullit.getPosition().y = this.getPosition().y-13;
-        this.getScene().getEntities().add(bullit);
-
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x + 16 - 3;
-        bullit.getPosition().y = this.getPosition().y-13;
-        this.getScene().getEntities().add(bullit);
-
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x + 5.5;
-        bullit.getPosition().y = this.getPosition().y-13-7;
-        this.getScene().getEntities().add(bullit);
-      }
+      keyboard.setState(KeyEvent.VK_Z, false);
+      this.m_weaponIndex--;
+      if (this.m_weaponIndex<0) this.m_weaponIndex=0;
+    } else if (keyboard.getState(KeyEvent.VK_X)) {
+      keyboard.setState(KeyEvent.VK_X, false);
+      this.m_weaponIndex++;
+      if (this.m_weaponIndex>=this.m_weapons.size()) this.m_weaponIndex=this.m_weapons.size()-1;
     }    
-    if (keyboard.getState(KeyEvent.VK_C)) {
-      if ((dtm-this.m_fireTimestamp)>=this.m_fireDelay) {
-        this.m_fireTimestamp = dtm;
-        
-        // add bullet;
-        GameEntity bullit;
-        v3.setCoordinates(-(160/5000.0), -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x-3;
-        bullit.getPosition().y = this.getPosition().y-13;
-        this.getScene().getEntities().add(bullit);
-
-        v3.setCoordinates((160/5000.0), -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x + 16 - 3;
-        bullit.getPosition().y = this.getPosition().y-13;
-        this.getScene().getEntities().add(bullit);
-
-        v3.setCoordinates(0, -(120/1000.0), 0);
-        bullit = new Bullit01(this.getGame(),this.getScene(),v3);
-        bullit.getPosition().x = this.getPosition().x + 5.5;
-        bullit.getPosition().y = this.getPosition().y-13-7;
-        this.getScene().getEntities().add(bullit);
-      }
-    }    
+    
+    if (keyboard.getState(KeyEvent.VK_SPACE)) {
+      Weapon weapon = this.m_weapons.elementAt(this.m_weaponIndex);
+      weapon.fire();      
+    }   
     
     // animation transition
     if (this.m_spriteIndexGoto>=0) {

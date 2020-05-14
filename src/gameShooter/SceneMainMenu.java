@@ -6,7 +6,6 @@ import engine.Font;
 import engine.GameEngine;
 import engine.GameGraphics;
 import engine.InputKeyboard;
-import engine.InputKeyboardKey;
 import engine.LayoutManager;
 
 public class SceneMainMenu extends Scene {
@@ -25,8 +24,6 @@ public class SceneMainMenu extends Scene {
     this.m_fontSmall.load(GameGraphics.getImage("data/charmap-oldschool_transparent.png"), new LayoutManager("data/charmap-oldschool_white.layout"));
 
     this.getEntities().add(new Background(this.getGameEngine(),this));
-    
-    this.getGameEngine().getInput().getKeyboard().add(new InputKeyboardKey(KeyEvent.VK_ENTER));
   }
   
   public void activate() {

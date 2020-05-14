@@ -1,21 +1,27 @@
 package engine;
 
-import java.awt.event.KeyEvent;
+//import java.awt.event.KeyEvent;
 import java.util.Vector;
 
 public class InputKeyboard {
 	private Vector<InputKeyboardKey> m_keys;
+	private boolean m_autoAddKeyCodes;
 	
 	public InputKeyboard() {
 	  this.m_keys = new Vector<InputKeyboardKey>();
-	  
+
+	  /*
 	  this.add(new InputKeyboardKey(KeyEvent.VK_ESCAPE));
     this.add(new InputKeyboardKey(KeyEvent.VK_SPACE));
+    this.add(new InputKeyboardKey(KeyEvent.VK_ENTER));
     this.add(new InputKeyboardKey(KeyEvent.VK_UP));
     this.add(new InputKeyboardKey(KeyEvent.VK_DOWN));
     this.add(new InputKeyboardKey(KeyEvent.VK_LEFT));
     this.add(new InputKeyboardKey(KeyEvent.VK_RIGHT));
+    /**/
 	  
+    this.setAutoAddKeyCodes(false);
+    
 		this.setKeys(false);
 	}
 
@@ -50,6 +56,12 @@ public class InputKeyboard {
 	  InputKeyboardKey key = this.find(code);
 	  if (key!=null) {
 	    key.setState(state);
+	  } else {
+	    if (this.getAutoAddKeyCodes()) {
+	      key = new InputKeyboardKey(code);
+	      key.setState(state);
+	      this.add(key);
+	    }
 	  }
 	}
 	
@@ -60,4 +72,7 @@ public class InputKeyboard {
 	  }
 	  return false;
 	}
+	
+	public void setAutoAddKeyCodes(boolean b) {this.m_autoAddKeyCodes=b;}
+	public boolean getAutoAddKeyCodes() {return this.m_autoAddKeyCodes;}
 }

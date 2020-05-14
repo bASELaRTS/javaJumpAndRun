@@ -9,6 +9,7 @@ public class Shooter extends GameEngine {
   
   public Shooter() {
     super("Shooter",120,160);
+    this.getInput().getKeyboard().setAutoAddKeyCodes(true);
 
     this.m_scenes = new SceneManager();
     this.m_scenes.add(new SceneImage(this,GameGraphics.getImage("data/bas.png"),2000,"sceneintro","scenemainmenu"));

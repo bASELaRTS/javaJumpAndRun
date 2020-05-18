@@ -3,11 +3,11 @@ package gameShooter;
 import engine.GameEngine;
 import engine.GameGraphics;
 
-public class HealthBar extends ShooterEntity {
+public class HUDHealthBar extends ShooterEntity {
   private double m_percentage;
   
-  public HealthBar(GameEngine engine, Scene scene) {
-    super(engine,scene,"healthbar");
+  public HUDHealthBar(GameEngine engine, Scene scene) {
+    super(engine,scene,"hudhealthbar");
     this.getPosition().setCoordinates(4, 4, 0);
     this.setWidth(6);
     this.setHeight(this.getGame().getHeight()-10);

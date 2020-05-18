@@ -6,7 +6,8 @@ import engine.Vector3;
 public class WeaponPlayerA extends Weapon {
   
   public WeaponPlayerA(ShooterEntity entity) {
-    super(entity); 
+    super(entity);
+    this.setFireDelay(150);
   }
   
   public boolean fire() {

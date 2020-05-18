@@ -6,6 +6,7 @@ public class Weapon {
   private long m_fireTimestamp;
   private int m_fireDelay;
   private int m_count;
+  private boolean m_autofire;
   
   public Weapon(ShooterEntity entity) {
     this.m_entity = entity;
@@ -13,6 +14,7 @@ public class Weapon {
     this.setFireDelay(500);
     this.setFireTimestamp(System.currentTimeMillis());
     this.setCount(-1);
+    this.setAutofire(false);
   }
   
   public boolean fire() {
@@ -30,5 +32,7 @@ public class Weapon {
   public int getFireDelay() {return this.m_fireDelay;}
   public void setFireTimestamp(long l) {this.m_fireTimestamp=l;}
   public long getFireTimestamp() {return this.m_fireTimestamp;}
+  public void setAutofire(boolean b) {this.m_autofire=b;}
+  public boolean getAutofire() {return this.m_autofire;}
   public ShooterEntity getGameEntity() {return this.m_entity;}
 }

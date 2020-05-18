@@ -4,7 +4,7 @@ import engine.GameEngine;
 import engine.GameFrame;
 import engine.GameGraphics;
 
-public class Shooter extends GameEngine {
+public class Shooter extends GameEngine {  
   private SceneManager m_scenes;
   
   public Shooter() {

@@ -20,6 +20,7 @@ public class Player extends ShooterEntity {
   private int m_weaponIndex;  
   
   private int m_health;
+  private int m_lives;
   
   public Player(GameEngine engine, Scene scene) {
     super(engine,scene,"player");
@@ -54,6 +55,7 @@ public class Player extends ShooterEntity {
     this.m_weaponIndex = 0;
     
     this.setHealth(65);
+    this.setLives(3);
   }
   
   public void update() {
@@ -136,4 +138,7 @@ public class Player extends ShooterEntity {
   
   public void setHealth(int i) {this.m_health=i;}
   public int getHealth() {return this.m_health;}
+  
+  public void setLives(int i) {this.m_lives=i;}
+  public int getLives() {return this.m_lives;}
 }

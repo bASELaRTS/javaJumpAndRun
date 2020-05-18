@@ -12,6 +12,7 @@ public class SceneGame extends Scene {
         
     this.getEntities().add(new Background(this.getGameEngine(),this));
     this.getEntities().add(new Player(this.getGameEngine(),this));
+    this.getEntities().add(new HealthBar(this.getGameEngine(),this));
   }  
   
   public void update() {

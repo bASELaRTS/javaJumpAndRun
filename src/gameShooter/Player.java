@@ -19,6 +19,8 @@ public class Player extends ShooterEntity {
   private Vector<Weapon> m_weapons;
   private int m_weaponIndex;  
   
+  private int m_health;
+  
   public Player(GameEngine engine, Scene scene) {
     super(engine,scene,"player");
     this.setGame(engine);
@@ -50,6 +52,8 @@ public class Player extends ShooterEntity {
     this.m_weapons.add(new WeaponPlayerC(this));
     this.m_weapons.add(new WeaponPlayerD(this));
     this.m_weaponIndex = 0;
+    
+    this.setHealth(65);
   }
   
   public void update() {
@@ -129,4 +133,7 @@ public class Player extends ShooterEntity {
     sprite = this.m_sprites.elementAt(this.m_spriteIndex);
     g.drawImage(sprite.getImage(),x,y);    
   }
+  
+  public void setHealth(int i) {this.m_health=i;}
+  public int getHealth() {return this.m_health;}
 }

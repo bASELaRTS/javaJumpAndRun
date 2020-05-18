@@ -40,6 +40,11 @@ public class GameGraphics {
     this.m_graphics.drawLine(x1, y1, x2, y2);
   }
   
+  public void drawRect(int x, int y, int w, int h, int c) {
+    this.m_graphics.setColor(new Color(c,true));
+    this.m_graphics.drawRect(x, y, w, h);
+  }
+  
   public void fillRect(int x, int y, int w, int h, int c) {
     this.m_graphics.setColor(new Color(c,true));
     this.m_graphics.fillRect(x, y, w, h);

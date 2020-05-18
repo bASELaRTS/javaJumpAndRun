@@ -41,4 +41,19 @@ public class EntityManager extends LinkedList {
       o = n;
     }    
   }
+  
+  public GameEntity find(String key) {
+    LinkedListObject o;
+    GameEntity e;
+    
+    o = this.getFirst();
+    while(o!=null) {
+      e = (GameEntity)o.getObject();
+      if (e.getKey().equals(key)) {
+        return e;
+      }
+      o = o.getNext();
+    }
+    return null;
+  }
 }
